@@ -1,7 +1,16 @@
 import os
+import sys
 
-# write a function to convert fractions to decimals
-def frac_to_decimal(num):
-    return num[0]/num[1]
+from sbert import SbertEmbedding
+from SupabaseConnect import SupabaseDBConnect
 
-print("The value of pi is",frac_to_decimal([865441,1478]))
+def main():
+    supabase_client = SupabaseDBConnect()
+    text_embeddings = SbertEmbedding().fetch_embeddings()
+    pk=1
+    for key in text_embeddings:
+        supabase_client.insertToDocument(pk,str(key),text_embeddings[key])
+        pk=pk+1
+
+main()
+    

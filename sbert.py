@@ -1,5 +1,6 @@
 from sentence_transformers import SentenceTransformer, util
 
+
 class SbertEmbedding:
 
     list_text = [
@@ -15,18 +16,16 @@ class SbertEmbedding:
         return model.encode(text)
 
 
-    def main(self):
+    def fetch_embeddings(self):
         embedding_storage = dict()
 
+        #supabase_repo = SupabaseDBConnect()
         for text in self.list_text:
-            embedding_result = self.fetch_embedding_text(text)
+            embedding_result = self.fetch_embedding_text(text)            
             embedding_storage[text] = embedding_result            
 
-
         print('Size of the result map'+str(len(embedding_storage)))
-        for key in embedding_storage:
-            print('Key:'+str(key))
-            print('Value:'+str(embedding_storage[key]))
+        
+        return embedding_storage
 
 
-SbertEmbedding().main()
