@@ -1,5 +1,6 @@
 create table documents (
-  id bigserial primary key,
-  content text,
+  id serial primary key,
+  title text not null,
+  body text not null,
   embedding vector(768)
 );

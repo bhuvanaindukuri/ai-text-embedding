@@ -9,8 +9,11 @@ def main():
     text_embeddings = SbertEmbedding().fetch_embeddings()
     pk=1
     for key in text_embeddings:
-        supabase_client.insertToDocument(pk,str(key),text_embeddings[key])
+        text_str = str(key)
+        title =text_str[0:20:1]
+        supabase_client.insertToDocument(pk,title,text_str,text_embeddings[key])
         pk=pk+1
+        print(title)
 
 main()
     

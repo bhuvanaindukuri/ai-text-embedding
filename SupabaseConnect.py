@@ -15,7 +15,8 @@ class SupabaseDBConnect:
         print("Connecting to Supabase URL:"+url)
         return db_client
 
-    def insertToDocument(self,index,text,vector_result):    
-        self.supabase_client.table("documents").insert({"id": index, "content": text, "embedding":vector_result.tolist()}).execute()
+    def insertToDocument(self,index,title,text,vector_result):    
+        self.supabase_client.table("documents").insert({"id": index,"title":title, "body": text, "embedding":vector_result.tolist()}).execute()
+        
 
 
